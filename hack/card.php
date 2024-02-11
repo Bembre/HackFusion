@@ -356,10 +356,10 @@ if($name = $_SESSION['name']){
     <li class="sub-menu-link"><a href="#">Departments</a></li>
     <ul class="side-nav-sub-menu">
       <li><a href="it.html">IT</a></li>
-      <li><a href="#">CSE</a></li>
-      <li><a href="#">ETC</a></li>
+      <li><a href="cse.htlm">CSE</a></li>
+      <li><a href="etc.html">ETC</a></li>
       <li><a href="#">MECH</a></li>
-      <li><a href="#">CIVIL</a></li>
+      <li><a href="civil.html">CIVIL</a></li>
     </ul>
     <li><a href="#">Contact</a></li>
   </ul>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Text Change</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        #dynamicText {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="#" onclick="changeText('Anonymous')">Anonymous</a></li>
+        <li><a href="#" onclick="switchAccount()">Switch Account</a></li>
+        <li><a href="#" onclick="changeText('John')">John</a></li>
+        <li><a href="#" onclick="changeText('Jane')">Jane</a></li>
+    </ul>
+</nav>
+
+<div id="dynamicText">Click on a name to see it here!</div>
+
+<script>
+    function changeText(name) {
+        document.getElementById('dynamicText').innerHTML = "Hello, " + name + "!";
+    }
+
+    function switchAccount() {
+        // Assuming you want to switch to "User" when clicking on "Switch Account"
+        changeText('User');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #4b4ead;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
+}
+
+.profile-container {
+    width: 400px;
+    height: 400px;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profile-content {
+    margin-top: 20px;
+}
+
+h1, h2, p {
+    color: #4b4ead;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="profile-container" style="background-color: #4b4ead; color: #fff; height: 40vh;">
+    <div class="profile-header" style="padding-top: 12%;">
+        <img src="./image/p1.png" style="height: 80px; width: 80px;">
+        <h1 id="fullName" style="color: #fff;">Dipak Jadhav</h1>
+        <p id="email" style="color: #fff;">S21_jadhav_dipak@mgmcen.ac.in</p>
+        <!-- <img src="./image/id3.jpg" alt="ID Card Photo" style="height: 180px; width: 180px; border-radius: 0px;"> -->
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+    // For demonstration purposes, let's use static data
+const userData = {
+    fullName: "Dipak Jadhav",
+    email: "S21_jadhav_dipak@mgmcen.ac.in",
+    userPhoto: "./image/p6.jpg",
+    idCardPhoto: "./image/id3.jpg",
+    posts: [
+        
+    ]
+};
+
+// Update profile information
+document.getElementById("fullName").innerText = userData.fullName;
+document.getElementById("email").innerText = userData.email;
+document.querySelector(".profile-header img").src = userData.userPhoto;
+document.querySelector(".profile-header img").alt = `Photo of ${userData.fullName}`;
+document.querySelector(".profile-header img + img").src = userData.idCardPhoto;
+
+// Display posts
+const postsList = document.getElementById("postsList");
+userData.posts.forEach(post => {
+    const li = document.createElement("li");
+    li.innerText = post;
+    postsList.appendChild(li);
+});
+
+</script>
+</body>
+
+</html>

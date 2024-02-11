@@ -1,0 +1,54 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "project";
+$sql="SELECT * FROM pool";
+$conn = new mysqli($servername, $username, $password, $dbname);
+$all = $conn->query($sql);
+?>
+
+
+
+
+<section id="form" style="display: grid; grid-template-columns: repeat(3, auto); gap: 10px;">
+        <?php 
+        while($row = mysqli_fetch_assoc($all)) {
+        ?>
+        <div class="card" style="width:35vh; height:45vh; align-items: center; border-radius:20px">
+                            <img src="./image/<?php echo $row['file']; ?>" style="height:180px; width:180px;">
+                                <h4><?php echo $row['name']; ?></h4>
+                                <button data-id='<?php echo $row['adhar']; ?>' class="userinfo btn btn-success" style="height: 50px; width: 100%; border-radius: 5px; border: none; color: #fff; font-size: 18px; font-weight: 500; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; background: linear-gradient(135deg, #71b7e6, #9b59b6);">More Info</button>
+        </div>
+        <?php } ?>
+    </section>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+        $('.userinfo').click(function(){
+            var adhar = $(this).data('id'); // Use 'id' instead of 'adhar'
+            $.ajax({
+                url: 'final2.php',
+                type: 'post',
+                data: { adhar: adhar },
+                success: function(response){ 
+                    $('#empModal .modal-body').html(response); 
+                    $('#empModal').modal('show'); 
+                }
+            });
+        });
+        });
+    </script>
+    <div class="modal fade" id="empModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" align="center">More Info</h4>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal" style="height: 50px; width: 100%; border-radius: 5px; border: none; color: #fff; font-size: 18px; font-weight: 500; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; background: linear-gradient(135deg, #71b7e6, #9b59b6);">Close</button>
+                        </div>
+                    </div>
+                </div>
+        </div>

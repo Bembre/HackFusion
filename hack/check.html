@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+</head>
+<body>
+
+<h2>User Dashboard</h2>
+
+<div id="userDetails"></div>
+
+<script>
+    // Check if the user is logged in
+    const loggedIn = localStorage.getItem('loggedIn');
+
+    if (loggedIn) {
+        // Display user details (you would fetch this data from the server)
+        const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+        document.getElementById('userDetails').innerHTML = `Welcome, ${userDetails.username}! Your email is ${userDetails.email}.`;
+    } else {
+        // Redirect to login page if not logged in
+        window.location.href = 'login.html';
+    }
+</script>
+
+</body>
+</html>

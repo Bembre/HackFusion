@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend Request Page</title>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f9fd; /* Light blue background color */
+            padding: 20px;
+            margin: 0;
+        }
+        #friendRequests {
+            list-style-type: none;
+            padding: 0;
+        }
+        .friendRequest {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4b4ead;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .friendRequest img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .friendRequest .details {
+            flex: 1;
+        }
+        .friendRequest button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+        .friendRequest button:hover {
+            background-color: #ddd;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        navigation {
+    background-color:#4b4ead;
+    padding: 10px;
+    text-align: center;
+    position: absolute;
+    /* bottom: 80%; */
+    width: 100%;
+  }
+
+  .navigation a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 5px;
+  }
+
+  .navigation a i {
+    margin-right: 5px;
+  }
+
+  .navigation a:hover {
+    background-color: #fff;
+    color: #4b4ead;
+    border-radius: 10px;
+  }
+        .dropdown {
+            position: fixed;
+            bottom: 200px;
+            right: 60px;
+            margin: 10px;
+        }
+
+    footer {
+      text-align: center;
+      background-color: #4b4ead;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    span {
+        color: #fff;
+    }
+    </style>
+</head>
+<body>
+    
+    <!-- <header style="margin: -5px;
+    background-color: #4b4ead;
+    padding-top: 31px">
+        <h1 style="color: white; padding-top: -5px;">Connection</h1>
+      </header> -->
+      <header style="margin: -40px; background-color: #4b4ead; width: 104%;">
+        <h1 style="color: white;">Connection</h1>
+      </header></body>
+      <div class="navigation" style="background-color: #4b4ead; font-size: larger; text-align: center; margin: -30px;padding-top: 2%; padding-bottom: 1%; width: 104%;">
+        <a href="card.php"><i class="fas fa-home"></i></a>
+        <a href="message.html"><i class="fas fa-handshake"></i>Connection's</a>
+        <a href="photo.html"><i class="far fa-image"></i>Photo</a>
+        <a href="gallery.html" style="text-decoration:none;"><i class="far fa-calendar-alt"></i>Events</a>
+      </div><br>
+    <button id="toggleProfileBtn">Toggle Profile</button>
+    <ul id="friendRequests"></ul>
+
+    <footer>
+        <p>&copy; 2024 Your MGM's College Of Engineering, Nanded</p>
+      </footer>
+
+
+    <script>
+        // Function to check if user is logged in
+        function isLoggedIn() {
+            return localStorage.getItem("loggedIn") === "true";
+        }
+
+        // Function to toggle profile
+        function toggleProfile() {
+            if (isLoggedIn()) {
+                localStorage.setItem("loggedIn", "false");
+            } else {
+                localStorage.setItem("loggedIn", "true");
+            }
+            displayFriendRequests();
+        }
+
+        // Simulated friend requests
+        const friendRequests = [
+            { id: 1, name: "John Doe", avatar: "./image/p1.png"}, // Replace 'avatar1.jpg' with your image URL
+            { id: 2, name: "Jane Smith", avatar: "./image/p2.png" }, // Replace 'avatar2.jpg' with your image URL
+            { id: 3, name: "Alice Johnson", avatar: "./image/p3.png" }, // Replace 'avatar3.jpg' with your image URL
+            { id: 4, name: "Alice Johnson", avatar: "./image/p4.png" },// Replace 'avatar3.jpg' with your image URL
+            { id: 5, name: "Alice Johnson", avatar: "./image/p5.png" },// Replace 'avatar3.jpg' with your image URL
+
+            
+
+
+        ];
+
+
+        
+
+        // Function to display friend requests
+        function displayFriendRequests() {
+            const friendRequestsList = document.getElementById("friendRequests");
+            friendRequestsList.innerHTML = "";
+            const loggedIn = isLoggedIn();
+
+            friendRequests.forEach(request => {
+                const li = document.createElement("li");
+                li.classList.add("friendRequest");
+                li.innerHTML = `
+                    <img src="${request.avatar}" alt="Avatar">
+                    <div class="details">
+                        <span>${request.name}</span>
+                        <div>
+                            ${loggedIn ? `
+                                <button onclick="acceptFriendRequest(${request.id})"><i class="fas fa-check"></i> Accept</button>
+                                <button onclick="rejectFriendRequest(${request.id})"><i class="fas fa-times"></i> Reject</button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                friendRequestsList.appendChild(li);
+            });
+        }
+
+        // Function to accept friend request
+        function acceptFriendRequest(id) {
+            const index = friendRequests.findIndex(request => request.id === id);
+            if (index !== -1) {
+                friendRequests.splice(index, 1);
+                displayFriendRequests();
+                alert("Friend request accepted!");
+            }
+        }
+
+        // Function to reject friend request
+        function rejectFriendRequest(id) {
+            const index = friendRequests.findIndex(request => request.id === id);
+            if (index !== -1) {
+                friendRequests.splice(index, 1);
+                displayFriendRequests();
+                alert("Friend request rejected!");
+            }
+        }
+
+        // Display friend requests when the page loads
+        window.onload = function() {
+            document.getElementById("toggleProfileBtn").addEventListener("click", toggleProfile);
+            displayFriendRequests();
+        };
+    </script>
+</body>
+</html>

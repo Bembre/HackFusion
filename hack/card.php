@@ -355,7 +355,7 @@ if($name = $_SESSION['name']){
     <li><a href="#">About</a></li>
     <li class="sub-menu-link"><a href="#">Departments</a></li>
     <ul class="side-nav-sub-menu">
-      <li><a href="#">IT</a></li>
+      <li><a href="./it.html">IT</a></li>
       <li><a href="#">CSE</a></li>
       <li><a href="#">ETC</a></li>
       <li><a href="#">MECH</a></li>
